@@ -1,0 +1,50 @@
+server:
+  port: 8080
+  uri-encoding: UTF-8 
+  #\u6307\u5b9acontext path
+  #context-path=/test
+  
+spring:
+    datasource:
+        url: jdbc:mysql://192.168.10.104:3306/ireader?characterEncoding=utf-8
+        username: root
+        password: sage
+        driver-class-name: com.mysql.jdbc.Driver
+        # \u4f7f\u7528druid\u6570\u636e\u6e90
+        type: com.alibaba.druid.pool.DruidDataSource
+        #\u914d\u7f6e\u521d\u59cb\u5316\u5927\u5c0f/\u6700\u5c0f/\u6700\u5927
+        initial-size: 1
+        min-idle: 1
+        max-active: 20
+        #\u83b7\u53d6\u8fde\u63a5\u7b49\u5f85\u8d85\u65f6\u65f6\u95f4
+        maxWait: 60000
+        #\u95f4\u9694\u591a\u4e45\u8fdb\u884c\u4e00\u6b21\u68c0\u6d4b\uff0c\u68c0\u6d4b\u9700\u8981\u5173\u95ed\u7684\u7a7a\u95f2\u8fde\u63a5
+        timeBetweenEvictionRunsMillis: 60000
+        #\u4e00\u4e2a\u8fde\u63a5\u5728\u6c60\u4e2d\u6700\u5c0f\u751f\u5b58\u7684\u65f6\u95f4
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+        #\u6253\u5f00PSCache\uff0c\u5e76\u6307\u5b9a\u6bcf\u4e2a\u8fde\u63a5\u4e0aPSCache\u7684\u5927\u5c0f\u3002oracle\u8bbe\u4e3atrue\uff0cmysql\u8bbe\u4e3afalse\u3002\u5206\u5e93\u5206\u8868\u8f83\u591a\u63a8\u8350\u8bbe\u7f6e\u4e3afalse
+        pool-prepared-statements: false 
+        max-pool-prepared-statement-per-connection-size: 20
+        
+        #\u76d1\u63a7\u7edf\u8ba1\u62e6\u622a\u7684filters
+        filters: stat,wall,log4j
+        logSlowSql: true
+        slowSqlMillis: 6000
+        loginUsername: druid
+        loginPassword: 67209774
+        
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+
+#\u8be5\u914d\u7f6e\u8282\u70b9\u4e3a\u72ec\u7acb\u7684\u8282\u70b9\uff0c\u6709\u5f88\u591a\u540c\u5b66\u5bb9\u6613\u5c06\u8fd9\u4e2a\u914d\u7f6e\u653e\u5728spring\u7684\u8282\u70b9\u4e0b\uff0c\u5bfc\u81f4\u914d\u7f6e\u65e0\u6cd5\u88ab\u8bc6\u522b
+mybatis:
+  mapper-locations: classpath:com/cnpiec/ireader/dao/*.xml  #\u6ce8\u610f\uff1a\u4e00\u5b9a\u8981\u5bf9\u5e94mapper\u6620\u5c04xml\u6587\u4ef6\u7684\u6240\u5728\u8def\u5f84
+  type-aliases-package: com.cnpiec.ireader.model  # \u6ce8\u610f\uff1a\u5bf9\u5e94\u5b9e\u4f53\u7c7b\u7684\u8def\u5f84

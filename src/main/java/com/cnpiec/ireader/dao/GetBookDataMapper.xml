@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnpiec.ireader.dao.GetBookDataDao">
+	<insert id="batchInsertBook" parameterType="Book">
+		INSERT INTO BOOK (BOOKID,NAME,PARTNERNAME) VALUES
+		<foreach collection="list" item="book" separator=",">
+			(#{book.bookId}, #{book.name}, #{book.partnerName})
+		</foreach>
+	</insert>
+
+
+	<insert id="batchInsertChapter" parameterType="Chapter">
+		INSERT INTO CHAPTER (CHAPTER_ORDER,TITLE,FREE,CHAPTER_ID,CONTENT,BOOK_ID,CREATE_TIME) VALUES
+		<foreach collection="list" item="chapter" separator=",">
+			(#{chapter.chapterOrder}, #{chapter.title},#{chapter.free},#{chapter.chapterId},#{chapter.content},#{chapter.bookId},SYSDATE())
+		</foreach>
+	</insert>
+</mapper>
